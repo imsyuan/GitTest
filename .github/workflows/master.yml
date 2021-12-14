@@ -1,20 +1,17 @@
-on:
-  push:
-    branches:
-      - master
-  pull_request:
+name: Psalm Static analysis
 
-name: Test
+on: [push, pull_request]
 
 jobs:
-  phpstan:
-    name: PHPStan
-
+  psalm:
+    name: Psalm
     runs-on: ubuntu-latest
-
     steps:
-      - name: "Checkout"
+      - name: Checkout code
         uses: actions/checkout@v2
+
+      - name: Run composer install
+        run: composer install
 
       - name: PHPStan
         uses: docker://oskarstark/phpstan-ga
