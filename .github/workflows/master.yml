@@ -1,32 +1,10 @@
-# This is a basic workflows to help you get started with Actions
-
-name: CI
-
-# Controls when the workflows will run
-on:
-  # Triggers the workflows on push or pull request events but only for the main branch
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-
-  # Allows you to run this workflows manually from the Actions tab
-  workflow_dispatch:
-
-# A workflows run is made up of one or more jobs that can run sequentially or in parallel
+on: [push, pull_request]
+name: Main
 jobs:
-  # This workflows contains a single job called "build"
-  build:
+  php-cs-fixer:
+    name: PHP-CS-Fixer
     runs-on: ubuntu-latest
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - name: 🚚  Checkout Repository
-        uses: actions/checkout@v2
-      - name: Setup Enviroment
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8'
-      - name: Install Packages
-        run: composer install
+      - uses: actions/checkout@v2
       - name: PHP-CS-Fixer
         uses: docker://oskarstark/php-cs-fixer-ga
