@@ -24,16 +24,13 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: 🚚  Checkout Repository
-      - uses: actions/checkout@v2
-
+        uses: actions/checkout@v2
       - name: Setup Enviroment
-          uses: shivammathur/setup-php@v2
-          with:
-            php-version: '8'
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8'
       - name: Install Packages
-          run: composer install
-      - name: Psalm
-          run: vendor/bin/psalm --shepherd
+        run: composer install
   php-cs-fixer:
     name: PHP-CS-Fixer
     runs-on: ubuntu-latest
